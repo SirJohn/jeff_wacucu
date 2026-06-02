@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <title>Jeff Mungai — Photographer · Videographer · Designer</title>
+  <meta name="description" content="Jeff Mungai — Nairobi-based photographer, videographer, and graphic designer capturing stories in black and white." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <div class="lightbox-inner">[ Photo Preview ]</div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home" onclick="closeMobile()">Home</a>
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#work" onclick="closeMobile()">Work</a>
+    <a href="#services" onclick="closeMobile()">Services</a>
+    <a href="#gallery" onclick="closeMobile()">Gallery</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+  </div>
+
+  <!-- ─── NAVBAR ─── -->
+  <nav id="navbar">
+    <a href="#home" class="nav-logo">Jeff <span>Mungai</span></a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+    </ul>
+    <a href="#contact" class="nav-contact-btn">Contact</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-noise"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Visual Storyteller · Nairobi, Kenya</p>
+      <h1 class="hero-name">
+        Jeff<br><span class="thin">Mungai</span>
+      </h1>
+      <p class="hero-tagline">Photography &nbsp;/&nbsp; Videography &nbsp;/&nbsp; Graphic Design</p>
+      <div style="margin-top:3rem;display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="#work" class="btn btn-white"><span>View Work</span></a>
+        <a href="#contact" class="btn btn-white" style="background:transparent;"><span>Let's Collaborate</span></a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section id="about">
+    <div class="about-visual fade-up">
+      <div class="about-visual-inner">
+        <span class="about-placeholder">JM</span>
+      </div>
+    </div>
+    <div class="about-text fade-up">
+      <p class="section-label">Who I Am</p>
+      <h2 class="section-title">Frame<br>Every<br>Moment</h2>
+      <p class="about-bio">
+        I'm Jeff Mungai — a Nairobi-based visual artist with a passion for capturing
+        the world in its most authentic form. Through photography, videography, and
+        graphic design, I craft narratives that resonate. From commercial campaigns
+        to documentary storytelling, every frame is intentional.
+      </p>
+      <p class="about-bio" style="margin-top: -1rem;">
+        With over 6 years of experience working with brands, creatives, and
+        individuals across Kenya and beyond, I bring precision, creativity, and
+        dedication to every project.
+      </p>
+      <a href="#contact" class="btn"><span>Work With Me</span></a>
+      <div class="about-stats">
+        <div>
+          <div class="stat-num">6+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div>
+          <div class="stat-num">200+</div>
+          <div class="stat-label">Projects Done</div>
+        </div>
+        <div>
+          <div class="stat-num">80+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WORK ─── -->
+  <section id="work">
+    <div class="work-header fade-up">
+      <div>
+        <p class="section-label">Selected Projects</p>
+        <h2 class="section-title">Featured<br>Work</h2>
+      </div>
+      <a href="archives.html" class="btn btn-outline">View All Projects</a>
+    </div>
+    <div class="work-grid fade-up">
+      <div class="work-item">
+        <div class="work-img-placeholder">Photography</div>
+        <div class="work-overlay">
+          <div class="work-overlay-title">Urban Portraits</div>
+          <div class="work-overlay-cat">Photography · 2024</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-img-placeholder">Film</div>
+        <div class="work-overlay">
+          <div class="work-overlay-title">Short Film Reel</div>
+          <div class="work-overlay-cat">Videography · 2024</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-img-placeholder">Design</div>
+        <div class="work-overlay">
+          <div class="work-overlay-title">Brand Identity</div>
+          <div class="work-overlay-cat">Graphic Design · 2023</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-img-placeholder">Documentary</div>
+        <div class="work-overlay">
+          <div class="work-overlay-title">Streets of Nairobi</div>
+          <div class="work-overlay-cat">Photo Series · 2023</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SERVICES ─── -->
+  <section id="services">
+    <div class="fade-up">
+      <p class="section-label">What I Offer</p>
+      <h2 class="section-title" style="color:var(--white);">Services</h2>
+    </div>
+    <div class="services-grid fade-up">
+
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <span class="service-icon">📷</span>
+        <div class="service-title">Photography</div>
+        <p class="service-desc">From portraits to commercial shoots, every image is crafted with purpose and precision.</p>
+        <ul class="service-list">
+          <li>Portrait & Editorial</li>
+          <li>Commercial & Product</li>
+          <li>Event Coverage</li>
+          <li>Documentary</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <span class="service-icon">🎬</span>
+        <div class="service-title">Videography</div>
+        <p class="service-desc">Cinematic video production that brings your story to life — from concept to final cut.</p>
+        <ul class="service-list">
+          <li>Brand & Corporate Films</li>
+          <li>Music Videos</li>
+          <li>Short Films & Docs</li>
+          <li>Social Media Content</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <span class="service-icon">✏️</span>
+        <div class="service-title">Graphic Design</div>
+        <p class="service-desc">Bold, distinctive visual identities and design solutions that leave a lasting impression.</p>
+        <ul class="service-list">
+          <li>Brand Identity & Logos</li>
+          <li>Print & Digital Media</li>
+          <li>Poster & Flyer Design</li>
+          <li>Social Media Graphics</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── GALLERY ─── -->
+  <section id="gallery">
+    <div class="gallery-header fade-up">
+      <div>
+        <p class="section-label">Visual Archive</p>
+        <h2 class="section-title">Gallery</h2>
+      </div>
+    </div>
+    <div class="gallery-masonry fade-up">
+      <div class="gallery-item" onclick="openLightbox()">
+        <div class="gallery-placeholder">Photo 01</div>
+        <div class="gallery-item-overlay"><span class="gallery-zoom">View</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox()">
+        <div class="gallery-placeholder">Photo 02</div>
+        <div class="gallery-item-overlay"><span class="gallery-zoom">View</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox()">
+        <div class="gallery-placeholder">Photo 03</div>
+        <div class="gallery-item-overlay"><span class="gallery-zoom">View</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox()">
+        <div class="gallery-placeholder">Photo 04</div>
+        <div class="gallery-item-overlay"><span class="gallery-zoom">View</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox()">
+        <div class="gallery-placeholder">Photo 05</div>
+        <div class="gallery-item-overlay"><span class="gallery-zoom">View</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox()">
+        <div class="gallery-placeholder">Photo 06</div>
+        <div class="gallery-item-overlay"><span class="gallery-zoom">View</span></div>
+      </div>
+    </div>
+    <div class="gallery-cta fade-up">
+      <p>Explore the full collection — photos, films, and design work from across the years.</p>
+      <a href="archives.html" class="btn btn-filled">
+        <span>Browse the Archives</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contact">
+    <div class="fade-up">
+      <p class="section-label">Get In Touch</p>
+    </div>
+    <div class="contact-grid fade-up">
+      <div class="contact-info">
+        <h2 class="section-title">Let's Create<br>Together</h2>
+        <p class="contact-intro">
+          Have a project in mind? Whether it's a brand campaign, a film, or a photoshoot —
+          I'd love to hear about it. Let's build something unforgettable.
+        </p>
+        <div class="contact-details">
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Email</span>
+            <span class="contact-detail-value">hello@jeffmungai.com</span>
+          </div>
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Phone</span>
+            <span class="contact-detail-value">+254 700 000 000</span>
+          </div>
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Based In</span>
+            <span class="contact-detail-value">Nairobi, Kenya</span>
+          </div>
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Available For</span>
+            <span class="contact-detail-value">Freelance & Collaborations</span>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-input" placeholder="John" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-input" placeholder="Doe" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="john@example.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Service</label>
+          <input type="text" class="form-input" placeholder="Photography / Videography / Design" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Tell me about your project..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-filled" style="width:100%;justify-content:center;">
+          <span>Send Message</span>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Jeff <span>Mungai</span></div>
+        <div class="footer-tagline">Photography · Videography · Design</div>
+      </div>
+      <ul class="footer-nav">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="archives.html">Archives</a></li>
+      </ul>
+      <div class="footer-socials">
+        <a class="social-link" href="#" title="Instagram"><i class="bi bi-instagram"></i></a>
+        <a class="social-link" href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
+        <a class="social-link" href="#" title="YouTube"><i class="bi bi-youtube"></i></a>
+        <a class="social-link" href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2024 Jeff Mungai. All rights reserved.</span>
+      <span class="footer-copy">Crafted with intention.</span>
+    </div>
+  </footer>
+
+  <script>
+    //   el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); follower.classList.remove('hover'); });
+    // });
+
+    // ─── Navbar scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ─── Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.querySelectorAll('span')[0].style.transform = open ? 'rotate(45deg) translate(4.5px,4.5px)' : '';
+      hamburger.querySelectorAll('span')[1].style.opacity = open ? '0' : '1';
+      hamburger.querySelectorAll('span')[2].style.transform = open ? 'rotate(-45deg) translate(4.5px,-4.5px)' : '';
+    });
+    function closeMobile() { mobileMenu.classList.remove('open'); hamburger.querySelectorAll('span').forEach(s => { s.style.transform=''; s.style.opacity=''; }); }
+
+    // ─── Fade up on scroll
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+    // ─── Lightbox
+    function openLightbox() { document.getElementById('lightbox').classList.add('open'); }
+    document.getElementById('lightboxClose').addEventListener('click', () => { document.getElementById('lightbox').classList.remove('open'); });
+    document.getElementById('lightbox').addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
+
+    // ─── Form
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type=submit] span');
+      btn.textContent = 'Message Sent ✓';
+      setTimeout(() => { btn.textContent = 'Send Message'; }, 3000);
+    }
+  </script>
+</body>
+</html>

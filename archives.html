@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <title>Archives — Jeff Mungai</title>
+  <meta name="description" content="Full archive of photography, videography, and design work by Jeff Mungai." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ─── ARCHIVES-SPECIFIC STYLES ─── */
+    .archives-hero {
+      height: 50vh;
+      background: var(--black);
+      display: flex;
+      align-items: flex-end;
+      padding: 0 5vw 6vh;
+      position: relative;
+      overflow: hidden;
+    }
+    .archives-hero .hero-bg { position: absolute; inset: 0; background:
+      repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(255,255,255,0.03) 80px,rgba(255,255,255,0.03) 81px),
+      repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(255,255,255,0.03) 80px,rgba(255,255,255,0.03) 81px);
+    }
+    .archives-hero-content { position: relative; z-index: 2; }
+    .archives-breadcrumb {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--grey-400);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .archives-breadcrumb a { color: var(--grey-400); text-decoration: none; transition: color var(--transition); }
+    .archives-breadcrumb a:hover { color: var(--white); }
+    .archives-title {
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+    .archives-subtitle {
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--grey-400);
+      margin-top: 1rem;
+      text-transform: uppercase;
+    }
+
+    /* filter bar */
+    .filter-bar {
+      padding: 3vh 5vw;
+      border-bottom: 1px solid var(--grey-200);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      background: var(--white);
+      position: sticky;
+      top: 72px;
+      z-index: 100;
+    }
+    .filter-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--grey-400);
+      margin-right: 0.5rem;
+    }
+    .filter-btn {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey-400);
+      background: none;
+      border: 1px solid var(--grey-200);
+      padding: 0.45rem 1.1rem;
+      cursor: none;
+      transition: all var(--transition);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--black);
+      border-color: var(--black);
+      color: var(--white);
+    }
+
+    /* archives sections */
+    .archives-section { padding: 7vh 5vw; border-bottom: 1px solid var(--grey-200); }
+    .archives-section:last-of-type { border-bottom: none; }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 4vh;
+    }
+    .section-count {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: var(--grey-400);
+    }
+
+    /* photo grid */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+    }
+    .photo-grid .work-item { grid-column: span 1; }
+    .photo-grid .work-item.wide { grid-column: span 2; }
+    .photo-grid .work-item.tall { grid-row: span 2; }
+    .photo-grid .work-item { aspect-ratio: 1/1; }
+    .photo-grid .work-item.wide { aspect-ratio: 2/1; }
+    .photo-grid .work-item.tall { aspect-ratio: 1/2; }
+
+    /* video grid */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .video-item {
+      background: var(--grey-100);
+      position: relative;
+      cursor: none;
+      overflow: hidden;
+    }
+    .video-thumb {
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--grey-100);
+      position: relative;
+      overflow: hidden;
+      transition: background var(--transition);
+    }
+    .video-item:hover .video-thumb { background: var(--grey-200); }
+    .play-btn {
+      width: 52px; height: 52px;
+      border: 1px solid var(--grey-400);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+    .video-item:hover .play-btn { border-color: var(--black); background: var(--black); }
+    .play-icon {
+      width: 0; height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 14px solid var(--grey-400);
+      margin-left: 3px;
+      transition: border-left-color var(--transition);
+    }
+    .video-item:hover .play-icon { border-left-color: var(--white); }
+    .video-meta {
+      padding: 1rem 0 0;
+    }
+    .video-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+    .video-info {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey-400);
+      margin-top: 0.25rem;
+    }
+
+    /* design grid */
+    .design-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .design-item {
+      background: var(--grey-100);
+      position: relative;
+      cursor: none;
+      overflow: hidden;
+    }
+    .design-thumb {
+      aspect-ratio: 3/4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey-400);
+      position: relative;
+      overflow: hidden;
+      background: var(--grey-100);
+      transition: background var(--transition);
+    }
+    .design-item:hover .design-thumb { background: var(--grey-200); }
+    .design-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      opacity: 0;
+      transition: opacity var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.25rem;
+    }
+    .design-item:hover .design-overlay { opacity: 1; }
+    .design-overlay-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--white);
+      transform: translateY(8px);
+      transition: transform var(--transition);
+    }
+    .design-item:hover .design-overlay-title { transform: translateY(0); }
+    .design-overlay-type {
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--grey-400);
+      margin-top: 0.2rem;
+    }
+
+    /* back button area */
+    .back-bar {
+      padding: 3vh 5vw;
+      border-top: 1px solid var(--grey-200);
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      background: var(--white);
+    }
+
+    @media (max-width: 1024px) {
+      .photo-grid { grid-template-columns: repeat(3, 1fr); }
+      .design-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .photo-grid { grid-template-columns: repeat(2, 1fr); }
+      .photo-grid .work-item.wide { grid-column: span 2; }
+      .video-grid { grid-template-columns: 1fr; }
+      .design-grid { grid-template-columns: repeat(2, 1fr); }
+      .filter-bar { top: 60px; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <div class="lightbox-inner">[ Photo Preview ]</div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/" onclick="closeMobile()">Home</a>
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#work" onclick="closeMobile()">Work</a>
+    <a href="#services" onclick="closeMobile()">Services</a>
+    <a href="#gallery" onclick="closeMobile()">Gallery</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+  </div>
+
+  <!-- ─── NAVBAR ─── -->
+  <nav id="navbar" class="scrolled">
+    <a href="/" class="nav-logo">Jeff <span>Mungai</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#work">Work</a></li>
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/#gallery">Gallery</a></li>
+    </ul>
+    <a href="/#contact" class="nav-contact-btn">Contact</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ─── ARCHIVES HERO ─── -->
+  <div class="archives-hero">
+    <div class="hero-bg"></div>
+    <div class="archives-hero-content">
+   
+      <h1 class="archives-title">The<br><span style="font-weight:100;">Archives</span></h1>
+      <p class="archives-subtitle">Photography · Videography · Graphic Design</p>
+    </div>
+  </div>
+
+  <!-- ─── FILTER BAR ─── -->
+  <div class="filter-bar">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" onclick="filterWork('all', this)">All Work</button>
+    <button class="filter-btn" onclick="filterWork('photo', this)">Photography</button>
+    <button class="filter-btn" onclick="filterWork('video', this)">Videography</button>
+    <button class="filter-btn" onclick="filterWork('design', this)">Design</button>
+  </div>
+
+  <!-- ─── PHOTOGRAPHY SECTION ─── -->
+  <section class="archives-section" id="section-photo" data-category="photo">
+    <div class="section-header fade-up">
+      <div>
+        <p class="section-label">Photography</p>
+        <h2 class="section-title">Photo<br>Archive</h2>
+      </div>
+      <span class="section-count">24 Works</span>
+    </div>
+    <div class="photo-grid fade-up">
+      <div class="work-item wide" onclick="openLightbox()">
+        <div class="work-img-placeholder">Editorial Series</div>
+        <div class="work-overlay"><div class="work-overlay-title">City Portraits</div><div class="work-overlay-cat">Editorial · 2024</div></div>
+      </div>
+      <div class="work-item" onclick="openLightbox()">
+        <div class="work-img-placeholder">Portrait</div>
+        <div class="work-overlay"><div class="work-overlay-title">Studio Session</div><div class="work-overlay-cat">Portrait · 2024</div></div>
+      </div>
+      <div class="work-item" onclick="openLightbox()">
+        <div class="work-img-placeholder">Event</div>
+        <div class="work-overlay"><div class="work-overlay-title">Fashion Week</div><div class="work-overlay-cat">Event · 2024</div></div>
+      </div>
+      <div class="work-item" onclick="openLightbox()">
+        <div class="work-img-placeholder">Landscape</div>
+        <div class="work-overlay"><div class="work-overlay-title">Nairobi Dusk</div><div class="work-overlay-cat">Landscape · 2023</div></div>
+      </div>
+      <div class="work-item" onclick="openLightbox()">
+        <div class="work-img-placeholder">Documentary</div>
+        <div class="work-overlay"><div class="work-overlay-title">Street Life</div><div class="work-overlay-cat">Documentary · 2023</div></div>
+      </div>
+      <div class="work-item wide" onclick="openLightbox()">
+        <div class="work-img-placeholder">Commercial</div>
+        <div class="work-overlay"><div class="work-overlay-title">Product Campaign</div><div class="work-overlay-cat">Commercial · 2023</div></div>
+      </div>
+      <div class="work-item" onclick="openLightbox()">
+        <div class="work-img-placeholder">Fine Art</div>
+        <div class="work-overlay"><div class="work-overlay-title">Shadows & Light</div><div class="work-overlay-cat">Fine Art · 2022</div></div>
+      </div>
+      <div class="work-item" onclick="openLightbox()">
+        <div class="work-img-placeholder">Wedding</div>
+        <div class="work-overlay"><div class="work-overlay-title">Wedding Day</div><div class="work-overlay-cat">Wedding · 2022</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── VIDEOGRAPHY SECTION ─── -->
+  <section class="archives-section" id="section-video" data-category="video">
+    <div class="section-header fade-up">
+      <div>
+        <p class="section-label"> Videography</p>
+        <h2 class="section-title">Film<br>Archive</h2>
+      </div>
+      <span class="section-count">12 Works</span>
+    </div>
+    <div class="video-grid fade-up">
+      <div class="video-item">
+        <div class="video-thumb">
+          <div class="play-btn"><div class="play-icon"></div></div>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Brand Story Film</div>
+          <div class="video-info">Corporate · 4:32 · 2024</div>
+        </div>
+      </div>
+      <div class="video-item">
+        <div class="video-thumb">
+          <div class="play-btn"><div class="play-icon"></div></div>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Music Video</div>
+          <div class="video-info">Music · 3:47 · 2024</div>
+        </div>
+      </div>
+      <div class="video-item">
+        <div class="video-thumb">
+          <div class="play-btn"><div class="play-icon"></div></div>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Short Documentary</div>
+          <div class="video-info">Documentary · 12:04 · 2023</div>
+        </div>
+      </div>
+      <div class="video-item">
+        <div class="video-thumb">
+          <div class="play-btn"><div class="play-icon"></div></div>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Wedding Highlight</div>
+          <div class="video-info">Wedding · 5:18 · 2023</div>
+        </div>
+      </div>
+      <div class="video-item">
+        <div class="video-thumb">
+          <div class="play-btn"><div class="play-icon"></div></div>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Product Launch Reel</div>
+          <div class="video-info">Commercial · 2:11 · 2023</div>
+        </div>
+      </div>
+      <div class="video-item">
+        <div class="video-thumb">
+          <div class="play-btn"><div class="play-icon"></div></div>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">Social Media Series</div>
+          <div class="video-info">Social · 0:45 · 2022</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── GRAPHIC DESIGN SECTION ─── -->
+  <section class="archives-section" id="section-design" data-category="design">
+    <div class="section-header fade-up">
+      <div>
+        <p class="section-label">  Graphic Design</p>
+        <h2 class="section-title">Design<br>Archive</h2>
+      </div>
+      <span class="section-count">18 Works</span>
+    </div>
+    <div class="design-grid fade-up">
+      <div class="design-item">
+        <div class="design-thumb">Brand Identity</div>
+        <div class="design-overlay">
+          <div class="design-overlay-title">Savanna Roasters</div>
+          <div class="design-overlay-type">Brand Identity · 2024</div>
+        </div>
+      </div>
+      <div class="design-item">
+        <div class="design-thumb">Poster</div>
+        <div class="design-overlay">
+          <div class="design-overlay-title">Music Festival</div>
+          <div class="design-overlay-type">Event Poster · 2024</div>
+        </div>
+      </div>
+      <div class="design-item">
+        <div class="design-thumb">Logo Design</div>
+        <div class="design-overlay">
+          <div class="design-overlay-title">The Bold Mark</div>
+          <div class="design-overlay-type">Logo · 2024</div>
+        </div>
+      </div>
+      <div class="design-item">
+        <div class="design-thumb">Print</div>
+        <div class="design-overlay">
+          <div class="design-overlay-title">Magazine Layout</div>
+          <div class="design-overlay-type">Print Design · 2023</div>
+        </div>
+      </div>
+      <div class="design-item">
+        <div class="design-thumb">Social Media</div>
+        <div class="design-overlay">
+          <div class="design-overlay-title">Campaign Kit</div>
+          <div class="design-overlay-type">Social Media · 2023</div>
+        </div>
+      </div>
+      <div class="design-item">
+        <div class="design-thumb">Packaging</div>
+        <div class="design-overlay">
+          <div class="design-overlay-title">Product Packaging</div>
+          <div class="design-overlay-type">Packaging · 2023</div>
+        </div>
+      </div>
+      <div class="design-item">
+        <div class="design-thumb">Brochure</div>
+        <div class="design-overlay">
+          <div class="design-overlay-title">Corporate Brochure</div>
+          <div class="design-overlay-type">Print · 2022</div>
+        </div>
+      </div>
+      <div class="design-item">
+        <div class="design-thumb">Typography</div>
+        <div class="design-overlay">
+          <div class="design-overlay-title">Type Specimen</div>
+          <div class="design-overlay-type">Typography · 2022</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BACK BAR ─── -->
+  <div class="back-bar">
+    <a href="/" class="btn">← Back to Portfolio</a>
+    <a href="/#contact" class="btn btn-filled">Start a Project</a>
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Jeff <span>Mungai</span></div>
+        <div class="footer-tagline">Photography · Videography · Design</div>
+      </div>
+      <ul class="footer-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#work">Work</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/#gallery">Gallery</a></li>
+        <li><a href="/archives.html">Archives</a></li>
+      </ul>
+      <div class="footer-socials">
+        <a class="social-link" href="#" title="Instagram"><i class="bi bi-instagram"></i></a>
+        <a class="social-link" href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
+        <a class="social-link" href="#" title="YouTube"><i class="bi bi-youtube"></i></a>
+        <a class="social-link" href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2024 Jeff Mungai. All rights reserved.</span>
+      <span class="footer-copy">Crafted with intention.</span>
+    </div>
+  </footer>
+
+  <script>
+    //   el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); follower.classList.remove('hover'); });
+    // });
+
+    // Navbar scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 0);
+    });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.querySelectorAll('span')[0].style.transform = open ? 'rotate(45deg) translate(4.5px,4.5px)' : '';
+      hamburger.querySelectorAll('span')[1].style.opacity = open ? '0' : '1';
+      hamburger.querySelectorAll('span')[2].style.transform = open ? 'rotate(-45deg) translate(4.5px,-4.5px)' : '';
+    });
+    function closeMobile() { mobileMenu.classList.remove('open'); hamburger.querySelectorAll('span').forEach(s => { s.style.transform=''; s.style.opacity=''; }); }
+
+    // Filter
+    function filterWork(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.archives-section').forEach(s => {
+        if (cat === 'all' || s.dataset.category === cat) {
+          s.style.display = '';
+        } else {
+          s.style.display = 'none';
+        }
+      });
+    }
+
+    // Fade in
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+    // Lightbox
+    function openLightbox() { document.getElementById('lightbox').classList.add('open'); }
+    document.getElementById('lightboxClose').addEventListener('click', () => { document.getElementById('lightbox').classList.remove('open'); });
+    document.getElementById('lightbox').addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
+  </script>
+</body>
+</html>
