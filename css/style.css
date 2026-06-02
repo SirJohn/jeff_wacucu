@@ -320,6 +320,13 @@ section { padding: 10vh 5vw; }
   letter-spacing: -0.05em;
   user-select: none;
 }
+.about-placeholder img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  filter: grayscale(1) brightness(1.2);
+  transition: transform var(--transition);
+}
 .about-visual::before {
   content: '';
   position: absolute;
